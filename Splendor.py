@@ -15,7 +15,6 @@ game[2][0][2][2] += 1
 game[2][0][2][3] += 1
 draw_board(game)
 time.sleep(3)
-time.sleep(3)
 # player 2
 remove_chips_from_bank(game[1][4], "onyx", 2)
 game[2][1][2][0] += 1
