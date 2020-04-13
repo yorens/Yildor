@@ -4,7 +4,7 @@ from Splendor_Functions import *
 # Sample game
 print("Game Starting")
 game = create_2_player_game("Jessie", "Steven")
-start_game(game)
+start_game_with_shuffle(game)
 draw_board(game)
 time.sleep(3)
 print("Player 1 takes turn 1")
@@ -20,9 +20,7 @@ time.sleep(3)
 print("Player 2 takes turn 1")
 # player 2
 remove_chips_from_bank(game[1][4], "onyx", 2)
-game[2][1][2][0] += 1
-game[2][1][2][2] += 1
-game[2][1][2][3] += 1
+game[2][1][2][4] += 2
 draw_board(game)
 time.sleep(3)
 print("Player 1 takes turn 2")

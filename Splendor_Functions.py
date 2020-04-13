@@ -396,10 +396,11 @@ def purchase_next_available_card(game, player_number):
         cost = card_cost_as_list(card)
         game[1][3].remove(card)
         game[2][player_number-1][1].append(card)
+        print("DEBUG: length of game[0][3]: " + str(len(game[0][3])))
         game[1][3].append(game[0][3][0])
         if cost[0] > 0:
             add_chips_to_bank(game[1][4], "diamond", cost[0])
-            game[2][player_number-1][2][0] -= [2][0]
+            game[2][player_number-1][2][0] -= cost[0]
         if cost[1] > 0:
             add_chips_to_bank(game[1][4], "sapphire", cost[1])
             game[2][player_number-1][2][1] -= cost[1]
@@ -466,8 +467,8 @@ def display_player_hands(players):
     print(hand_row_7)
     print(hand_bottom)
 
-def create_card(rank, gem, points, diamond_cost, sapphire_cost, emerald_cost, ruby_cost, onyx_cost):
-    cost_string = str(sapphire_cost) + str(emerald_cost) + str(ruby_cost) + str(onyx_cost) + str(diamond_cost)
+def create_card(rank, gem, points, onyx_cost, ruby_cost, emerald_cost, sapphire_cost, diamond_cost):
+    cost_string = str(diamond_cost) + str(sapphire_cost) + str(emerald_cost) + str(ruby_cost) + str(onyx_cost)
     return (rank, gem, points, cost_string)
 
 def card_cost_as_list(card):
@@ -476,11 +477,12 @@ def card_cost_as_list(card):
         cost.append(int(c))
     return cost
 
-def start_game(game):
+def create_game_decks(game):
     rank_1_deck = game[0][3]
     rank_2_deck = game[0][2]
     rank_3_deck = game[0][1]
     noble_deck = game[0][0]
+    
     rank_1_deck.append(create_card(1, "diamond", 1, 0, 0, 4, 0, 0))
     rank_1_deck.append(create_card(1, "diamond", 0, 0, 2, 0, 0, 2))
     rank_1_deck.append(create_card(1, "diamond", 0, 0, 3, 0, 0, 0))
@@ -581,10 +583,29 @@ def start_game(game):
     noble_deck.append(create_card(4, "noble", 3, 4, 4, 0, 0, 0))
     noble_deck.append(create_card(4, "noble", 3, 0, 0, 0, 4, 4))
     noble_deck.append(create_card(4, "noble", 3, 0, 4, 4, 0, 0))
+
+    return game
+
+def start_game_with_shuffle(game):
+    rank_1_deck = game[0][3]
+    rank_2_deck = game[0][2]
+    rank_3_deck = game[0][1]
+    noble_deck = game[0][0]
+
     random.shuffle(noble_deck)
     random.shuffle(rank_3_deck)
     random.shuffle(rank_2_deck)
     random.shuffle(rank_1_deck)
+
+    start_game_with_deck(game)
+
+
+def start_game_with_deck(game):
+    rank_1_deck = game[0][3]
+    rank_2_deck = game[0][2]
+    rank_3_deck = game[0][1]
+    noble_deck = game[0][0]
+
     for i in range(len(game[2]) + 1):
         game[1][0].append(noble_deck[i])
     del game[0][0][0]
@@ -607,8 +628,6 @@ def start_game(game):
     del game[0][3][0]
     del game[0][3][0]
     game[1][4] = initialize_bank(7, 7, 7, 7, 7)
-
-
 
 
 
@@ -665,4 +684,5 @@ def create_2_player_game(player_1_name, player_2_name):
     decks = [noble_deck, rank_3_deck, rank_2_deck, rank_1_deck]
     board = [nobles_dealt, rank_3_cards_dealt, rank_2_cards_dealt, rank_1_cards_dealt, bank]
     game = [decks, board, players]
+    game = create_game_decks(game)
     return game
