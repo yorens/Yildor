@@ -251,7 +251,8 @@ EMERALD_INDEX = 2
 RUBY_INDEX = 3
 ONYX_INDEX = 4
 
-def add_chips_to_bank(bank, chip_type, num_chips):
+def add_chips_to_bank(game, chip_type, num_chips):
+    bank = game[1][4]
     index = -1
     if chip_type == "diamond":
         index = DIAMOND_INDEX
@@ -269,6 +270,7 @@ def add_chips_to_bank(bank, chip_type, num_chips):
         chips = num_chips
         if bank[index] >= num_chips:
             bank[index] += chips
+    return game
             
 def remove_chips_from_bank(bank, chip_type, num_chips):
     index = -1
@@ -399,19 +401,19 @@ def purchase_next_available_card(game, player_number):
         print("DEBUG: length of game[0][3]: " + str(len(game[0][3])))
         game[1][3].append(game[0][3][0])
         if cost[0] > 0:
-            add_chips_to_bank(game[1][4], "diamond", cost[0])
+            game = add_chips_to_bank(game, "diamond", cost[0])
             game[2][player_number-1][2][0] -= cost[0]
         if cost[1] > 0:
-            add_chips_to_bank(game[1][4], "sapphire", cost[1])
+            game = add_chips_to_bank(game, "sapphire", cost[1])
             game[2][player_number-1][2][1] -= cost[1]
         if cost[2] > 0:
-            add_chips_to_bank(game[1][4], "emerald", cost[2])
+            game = add_chips_to_bank(game, "emerald", cost[2])
             game[2][player_number-1][2][2] -= cost[2]
         if cost[3] > 0:
-            add_chips_to_bank(game[1][4], "ruby", cost[3])
+            game = add_chips_to_bank(game, "ruby", cost[3])
             game[2][player_number-1][2][3] -= cost[3]
         if cost[4] > 0:
-            add_chips_to_bank(game[1][4], "onyx", cost[4])
+            game = add_chips_to_bank(game, "onyx", cost[4])
             game[2][player_number-1][2][4] -= cost[4]
     
 

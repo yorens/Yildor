@@ -128,4 +128,7 @@ draw_board(game)
 print("Player 2 takes turn 4")
 # player 2
 purchase_next_available_card(game, 2)
+game = add_chips_to_bank(game, "diamond", 1)
+game = add_chips_to_bank(game, "ruby", 1)
+game = add_chips_to_bank(game, "onyx", 3)
 draw_board(game)
