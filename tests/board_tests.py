@@ -3,7 +3,7 @@ import unittest
 
 class TestBoardMethods(unittest.TestCase):
 
-    def test_replaceme(self):
+    def test_board_replaceme(self):
         self.assertTrue(True)
 
 

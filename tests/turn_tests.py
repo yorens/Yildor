@@ -3,7 +3,7 @@ import unittest
 
 class TestTurnMethods(unittest.TestCase):
 
-    def test_replaceme(self):
+    def test_turn_replaceme(self):
         self.assertTrue(True)
 
 

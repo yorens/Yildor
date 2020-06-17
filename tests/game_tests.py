@@ -14,13 +14,13 @@ class TestGameMethods(unittest.TestCase):
         # clear self.game if necessary
         return
 
-    def test_replaceme(self):
+    def test_game_replaceme(self):
         self.assertTrue(True)
 
-    # def test_broken(self):
+    # def test_game_broken(self):
     #     self.assertTrue(False)
 
-    def test_isEqual(self):
+    def test_game_is_equal(self):
         self.assertEqual("a", "a")
 
 
