@@ -1,3 +1,5 @@
+import random
+
 class Game:
     def __init__(self, num_players):
         self.num_players = num_players
@@ -6,3 +8,4 @@ class Game:
         #create players
         #create board
         self.turns = []
+        random.seed()
