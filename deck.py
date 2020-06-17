@@ -27,3 +27,5 @@ class Deck:
         del self.deck[0]
         return card
                 
+    def length(self):
+        return len(self.deck)
