@@ -1,3 +1,4 @@
+import random
 class Deck:
     def __init__(self):
         self.deck = []
@@ -15,4 +16,14 @@ class Deck:
             if card == input_card:
                 return True
         return False
+    
+    def shuffle_deck(self):
+        random.shuffle(self.deck)
+
+    def deal_card(self):
+        if len(self.deck) == 0:
+            return None
+        card = self.deck[0]
+        del self.deck[0]
+        return card
                 
