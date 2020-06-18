@@ -1,0 +1,65 @@
+Welcome to Yildor!
+
+Do you want to...
+(1) Start a new game     (2) Exit
+Enter the number of your choice: 1
+
+How many people are playing (please enter a number)?   3
+
+Enter the name for player 1:
+Enter the name for player 2:
+Enter the name for player 3:
+
+Do you want to...
+(1) Choose chips         (2) Choose card           (3) Pay for reserved card
+Enter the number of your choice:
+
+if chips:
+    while last_input == 2:
+        ( 1) Choose 2 diamonds   ( 2) Choose 2 sapphires   ( 3) Choose 2 emeralds   
+        ( 4) Choose 2 rubies     ( 5) Choose 2 onyxs       ( 6) Choose 1 diamond
+        ( 7) Choose 1 sapphire   ( 8) Choose 1 emerald     ( 9) Choose 1 ruby
+        (10) Choose 1 onyx
+        Enter the number of your choice: 6
+
+        ( 1) Choose 1 sapphire   ( 2) Choose 1 emerald     ( 3) Choose 1 ruby 
+        ( 4) Choose 1 onyx
+        Enter the number of your choice: 4
+
+        ( 1) Choose 1 sapphire   ( 2) Choose 1 emerald     ( 3) Choose 1 ruby 
+        Enter the number of your choice: 3
+
+        (1) Yes.   (2) No.
+        Are you sure? 1
+
+        Ok.
+
+if card:
+
+    (1) Rank 1 (bottom row)   (2) Rank 2 (middle row)   (3) Rank 3 (top row)
+    Choose which rank the card is that you want to buy: 1
+
+    (1) The 1st card (on the left)   (2) The 2nd card (on the middle left)
+    (3) The 3rd card (on the middle right) (4) The 4th card (on the right)
+    Enter the number of your choice: 4
+
+    Including your cards, it will cost you 2 diamond chips. You can afford it.
+
+    (1) Yes.     (2) No.
+    Do you want to do this? 2
+
+    Ok, lets start over.
+
+    (1) Rank 1 (bottom row)   (2) Rank 2 (middle row)   (3) Rank 3 (top row)
+    Choose which rank the card is that you want to buy: 1
+
+    (1) The 1st card (on the left)   (2) The 2nd card (on the middle left)
+    (3) The 3rd card (on the middle right) (4) The 4th card (on the right)
+    Enter the number of your choice: 4
+
+    Including your cards, it will cost you 2 diamond chips. You can afford it.
+
+    (1) Yes.     (2) No.
+    Do you want to do this? 1
+
+    Ok.
