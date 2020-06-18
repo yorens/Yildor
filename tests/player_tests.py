@@ -142,5 +142,20 @@ class TestPlayerMethods(unittest.TestCase):
         chip_1 = chip.Chip(yildor.onyx)
         player_1.add_chip(chip_1)
 
+    def test_player_remove_one_diamond_chip_when_chips(self):
+        player_1 = player.Player("Yildiz")
+        chip_1 = chip.Chip(yildor.diamond)
+        player_1.add_chip(chip_1)
+        player_1.add_chip(chip_1)
+        self.assertTrue(player_1.diamond_chips == 2)
+        player_1.remove_chip(chip_1)
+        self.assertTrue(player_1.diamond_chips == 1)
+
+    def test_player_remove_one_diamond_chip_when_no_chips(self):
+        player_1 = player.Player("Yildiz")
+        chip_1 = chip.Chip(yildor.diamond)
+        player_1.remove_chip(chip_1)
+        self.assertTrue(player_1.diamond_chips == 0)
+
 if __name__ == '__main__':
     unittest.main()

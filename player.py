@@ -80,3 +80,40 @@ class Player:
 
         elif chip_type == yildor.onyx:
             self.onyx_chips += 1
+
+    def remove_chip(self, chip):
+        chip_type = chip.gem_type
+        if chip_type == yildor.diamond:
+            self.diamond_chips -= 1
+            if self.diamond_chips <= 0:
+                self.diamond_chips = 0
+                return 0
+            return 1
+
+        elif chip_type == yildor.sapphire:
+            self.sapphire_chips -= 1
+            if self.sapphire_chips <= 0:
+                self.sapphire_chips = 0
+                return 0
+            return 1
+
+        elif chip_type == yildor.emerald:
+            self.emerald_chips -= 1
+            if self.emerald_chips <= 0:
+                self.emerald_chips = 0
+                return 0
+            return 1
+        
+        elif chip_type == yildor.ruby:
+            self.ruby_chips -= 1
+            if self.ruby_chips <= 0:
+                self.ruby_chips = 0
+                return 0
+            return 1
+
+        elif chip_type == yildor.onyx:
+            self.onyx_chips -= 1
+            if self.onyx_chips <= 0:
+                self.onyx_chips = 0
+                return 0
+            return 1
