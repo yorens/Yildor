@@ -1,5 +1,6 @@
 import card
-
+import chip
+import yildor
 class Player:
     def __init__(self, name):
         self.number = -1
@@ -16,50 +17,66 @@ class Player:
         self.onyx_cards = []
         self.wild_tokens = 0
         
-    def emerald_card_buying(self):
+    def emerald_cards_currently(self):
         return len(self.emerald_cards)
     
-    def diamond_card_buying(self):
+    def diamond_cards_currently(self):
         return len(self.diamond_cards)
 
-    def sapphire_card_buying(self):
+    def sapphire_cards_currently(self):
         return len(self.sapphire_cards)
 
-    def ruby_card_buying(self):
+    def ruby_cards_currently(self):
         return len(self.ruby_cards)
 
-    def onyx_card_buying(self):
+    def onyx_cards_currently(self):
         return len(self.onyx_cards)
 
-    def emerald_chip_buying(self):
+    def emerald_chips_currently(self):
         return self.emerald_chips
     
-    def diamond_chip_buying(self):
+    def diamond_chips_currently(self):
         return self.diamond_chips
 
-    def sapphire_chip_buying(self):
+    def sapphire_chips_currently(self):
         return self.sapphire_chips
 
-    def ruby_chip_buying(self):
+    def ruby_chips_currently(self):
         return self.ruby_chips
 
-    def onyx_chip_buying(self):
+    def onyx_chips_currently(self):
         return self.onyx_chips
 
     def add_card(self, card):
         card_type = card.gem_type
-        if card_type == "diamond":
+        if card_type == yildor.diamond:
             self.diamond_cards.append(card)
 
-        elif card_type == "sapphire":
+        elif card_type == yildor.sapphire:
             self.sapphire_cards.append(card)
 
-        elif card_type == "emerald":
+        elif card_type == yildor.emerald:
             self.emerald_cards.append(card)
         
-        elif card_type == "ruby":
+        elif card_type == yildor.ruby:
             self.ruby_cards.append(card)
 
-        elif card_type == "onyx":
+        elif card_type == yildor.onyx:
             self.onyx_cards.append(card)
 
+    def add_chip(self, chip):
+        chip_type = chip.gem_type
+        if chip_type == yildor.diamond:
+            self.diamond_chips += 1
+
+        elif chip_type == yildor.sapphire:
+            self.sapphire_chips += 1
+
+        elif chip_type == yildor.emerald:
+            self.emerald_chips += 1
+        
+        elif chip_type == yildor.ruby:
+            self.ruby_chips += 1
+
+        elif chip_type == yildor.onyx:
+            self.onyx_chips += 1

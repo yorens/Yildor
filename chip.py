@@ -1,8 +1,8 @@
 import yildor
 
 class Chip:
-    def __init__(self, chip_type):
-        self.chip_type = chip_type
+    def __init__(self, gem_type):
+        self.gem_type = gem_type
 
 def create_diamond():
     return Chip(yildor.diamond)
