@@ -1,7 +1,9 @@
 
 # constants for the game chip/card types
-diamond = "diamond"
-sapphire = "sapphire"
-emerald = "emerald"
-ruby = "ruby"
-onyx = "onyx"
+diamond     = "diamond"
+sapphire    = "sapphire"
+emerald     = "emerald"
+ruby        = "ruby"
+onyx        = "onyx"
+
+noble       = "noble"
