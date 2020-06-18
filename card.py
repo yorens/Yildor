@@ -54,5 +54,15 @@ class Card:
         return self.rank
 
     def number_of_gem_costs(self):
-        # TODO
-        return 0
+        num = 0
+        if self.diamond_cost > 0:
+            num += 1
+        if self.sapphire_cost > 0:
+            num += 1
+        if self.emerald_cost > 0:
+            num += 1
+        if self.ruby_cost > 0:
+            num += 1
+        if self.onyx_cost > 0:
+            num += 1
+        return num

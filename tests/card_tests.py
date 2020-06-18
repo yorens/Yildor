@@ -57,7 +57,7 @@ class TestCardMethods(unittest.TestCase):
         self.assertTrue(card_1.cost_ruby() == 4)
         self.assertTrue(card_1.cost_onyx() == 5)
 
-    def test_card_set_multiple_costs_in_constructor(self):
+    def test_card_set_multiple_costs(self):
         card_1 = card.Card(1, 0, yildor.sapphire)
         card_1.set_cost_diamond(1).set_cost_sapphire(2).set_cost_emerald(3).set_cost_ruby(4).set_cost_onyx(5)
         self.assertTrue(card_1.cost_diamond() == 1)
