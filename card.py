@@ -43,3 +43,16 @@ class Card:
 
     def cost_onyx(self):
         return self.onyx_cost
+
+    def get_gem_type(self):
+        return self.gem_type
+
+    def get_point_value(self):
+        return self.point_value
+
+    def get_rank(self):
+        return self.rank
+
+    def number_of_gem_costs(self):
+        # TODO
+        return 0
