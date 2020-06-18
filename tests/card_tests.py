@@ -66,5 +66,30 @@ class TestCardMethods(unittest.TestCase):
         self.assertTrue(card_1.cost_ruby() == 4)
         self.assertTrue(card_1.cost_onyx() == 5)
 
+    def test_card_5_gem_cost(self):
+        card_1 = card.Card(1, 0, yildor.sapphire)
+        card_1.set_cost_diamond(1).set_cost_sapphire(2).set_cost_emerald(3).set_cost_ruby(4).set_cost_onyx(5)
+        self.assertTrue(card_1.number_of_gem_costs() == 5)
+
+    def test_card_4_gem_cost(self):
+        card_1 = card.Card(1, 0, yildor.sapphire)
+        card_1.set_cost_diamond(1).set_cost_sapphire(2).set_cost_emerald(3).set_cost_ruby(4)
+        self.assertTrue(card_1.number_of_gem_costs() == 4)
+
+    def test_card_3_gem_cost(self):
+        card_1 = card.Card(1, 0, yildor.sapphire)
+        card_1.set_cost_diamond(1).set_cost_sapphire(2).set_cost_emerald(3)
+        self.assertTrue(card_1.number_of_gem_costs() == 3)
+
+    def test_card_2_gem_cost(self):
+        card_1 = card.Card(1, 0, yildor.sapphire)
+        card_1.set_cost_diamond(1).set_cost_sapphire(2)
+        self.assertTrue(card_1.number_of_gem_costs() == 2)
+
+    def test_card_1_gem_cost(self):
+        card_1 = card.Card(1, 0, yildor.sapphire)
+        card_1.set_cost_diamond(1)
+        self.assertTrue(card_1.number_of_gem_costs() == 1)
+
 if __name__ == '__main__':
     unittest.main()
