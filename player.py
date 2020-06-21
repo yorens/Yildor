@@ -16,6 +16,9 @@ class Player:
         self.ruby_cards = []
         self.onyx_cards = []
         self.wild_tokens = 0
+
+    def to_string(self):
+        return "<player name: " + self.name + ">"
         
     def emerald_cards_currently(self):
         return len(self.emerald_cards)
