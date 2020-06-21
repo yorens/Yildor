@@ -13,17 +13,29 @@ import logging
 #     []MenuItem
 #     Prompt
 
+
 class Menu:
-    def __init__(self, title, prompt):
+    def __init__(self, title, prompt, numeric_response_only=False):
         self.title = title
         self.prompt = prompt
-        self.choice = 0
+        self.choice_as_int = 0
+        self.choice_as_string = ""
+        self.numeric_response_only = numeric_response_only
+
         self.menu_items = []
 
     def add_menu_item(self, menu_item):
         self.menu_items.append(menu_item)
 
+    def get_choice_as_int(self):
+        return self.choice_as_int
+
+    def get_choice_as_string(self):
+        return self.choice_as_string
+
     def display(self):
+        self.choice_as_int = 0
+        self.choice_as_string = ""
         total_padding_amount = 0
         padding_amount = 0
         # count up all the menu items to see how many
@@ -45,7 +57,8 @@ class Menu:
         total_padding_amount = 75 - total_space_for_prompts
         padding_amount = math.floor(total_padding_amount/number_columns)
         total_column_width = max_string_size + 4 + padding_amount
-        logging.debug("total_space_for_prompts: " + str(total_space_for_prompts))
+        logging.debug("total_space_for_prompts: " +
+                      str(total_space_for_prompts))
         logging.debug("total_padding_amount: " + str(total_padding_amount))
         logging.debug("padding_amount: " + str(padding_amount))
         logging.debug("total_column_width: " + str(total_column_width))
@@ -68,16 +81,17 @@ class Menu:
         print(menu_buffer)
         valid_choice = False
         while not valid_choice:
-            self.choice = input(self.prompt)
-            try:
-                int_ask = int(self.choice)
-                if int_ask >= 1 and int_ask <= len(self.menu_items):
-                    valid_choice = True
-            except ValueError:
-                valid_choice = False
+            self.choice_as_string = input(self.prompt)
+            if self.numeric_response_only:
+                try:
+                    self.choice_as_int = int(self.choice_as_string)
+                    if self.choice_as_int >= 1 and self.choice_as_int <= len(self.menu_items):
+                        valid_choice = True
+                except ValueError:
+                    valid_choice = False
 
-            if not valid_choice:
-                print("Sorry, please try again.")
+                if not valid_choice:
+                    print("Sorry, please try again.")
 
 
 class MenuItem:
@@ -86,17 +100,19 @@ class MenuItem:
         self.function = function
         self.index = index
 
+
 if __name__ == '__main__':
     logging.basicConfig(filename='tmp/yildor.log',
                         format='%(asctime)s [%(levelname)s] %(filename)s:%(lineno)d %(message)s',
                         level=logging.DEBUG)
-    menu1 = Menu("Do you want to...", "Enter the number of your choice: ")
+    menu1 = Menu("Do you want to...",
+                 "Enter the number of your choice: ", True)
     menu1.add_menu_item(MenuItem("Choose chips", "c1", 1))
     menu1.add_menu_item(MenuItem("Choose card", "c2", 2))
     menu1.add_menu_item(MenuItem("Pay for reserved card", "c3", 3))
     menu1.display()
-    print("you chose: " + menu1.choice)
-    menu2 = Menu("", "Enter the number of your choice: ")
+    print("you chose: " + str(menu1.get_choice_as_int()))
+    menu2 = Menu("", "Enter the number of your choice: ", True)
     menu2.add_menu_item(MenuItem("Choose 2 diamonds", "c1", 1))
     menu2.add_menu_item(MenuItem("Choose 2 sapphires", "c2", 2))
     menu2.add_menu_item(MenuItem("Choose 2 emeralds", "c3", 3))
@@ -108,5 +124,3 @@ if __name__ == '__main__':
     menu2.add_menu_item(MenuItem("Choose 1 ruby", "c9", 9))
     menu2.add_menu_item(MenuItem("Choose 1 onyx", "c10", 10))
     menu2.display()
-    print("you chose: " + menu2.choice)
-
