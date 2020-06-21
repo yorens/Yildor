@@ -15,12 +15,13 @@ import logging
 
 
 class Menu:
-    def __init__(self, title, prompt, numeric_response_only=False):
+    def __init__(self, title, prompt, numeric_response_only=False, expect_raw_input=False):
         self.title = title
         self.prompt = prompt
         self.choice_as_int = 0
         self.choice_as_string = ""
         self.numeric_response_only = numeric_response_only
+        self.expect_raw_input = expect_raw_input
 
         self.menu_items = []
 
@@ -65,7 +66,9 @@ class Menu:
         logging.debug("padding: " + str(padding_amount))
 
         menu_index = 0
-        menu_buffer = self.title + "\n"
+        menu_buffer = ""
+        if self.title != "":
+            menu_buffer = self.title + "\n"
         for m in self.menu_items:
             column = menu_index % number_columns
             display_menu_index = " " + str(menu_index+1)
@@ -85,13 +88,18 @@ class Menu:
             if self.numeric_response_only:
                 try:
                     self.choice_as_int = int(self.choice_as_string)
-                    if self.choice_as_int >= 1 and self.choice_as_int <= len(self.menu_items):
+                    if not self.expect_raw_input:
+                        if self.choice_as_int >= 1 and self.choice_as_int <= len(self.menu_items):
+                            valid_choice = True
+                    else:
                         valid_choice = True
                 except ValueError:
                     valid_choice = False
 
                 if not valid_choice:
                     print("Sorry, please try again.")
+            else:
+                valid_choice = True
 
 
 class MenuItem:
@@ -124,3 +132,11 @@ if __name__ == '__main__':
     menu2.add_menu_item(MenuItem("Choose 1 ruby", "c9", 9))
     menu2.add_menu_item(MenuItem("Choose 1 onyx", "c10", 10))
     menu2.display()
+    menu_3 = Menu("", "How many players are playing (please enter a number)? ", True, True)
+    menu_3.display()
+    x = menu_3.get_choice_as_int()
+    list_of_players = []
+    for i in range(x):
+        player = input("Enter the name for player " + str(i + 1) + ": ")
+        list_of_players.append(player)
+    print(list_of_players)
