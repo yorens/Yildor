@@ -1,42 +1,25 @@
 import math
 import logging
 
-# Menuing mechanism
 
-# MenuItem
-#     Title
-#     Index
-#     FunctionKey
+class MenuChoiceInput:
+    # MenuChoiceInput creats a menu with choices.
+    # Each choice is represented by a MenuItem
 
-# Menu
-#     Title
-#     []MenuItem
-#     Prompt
-
-
-class Menu:
-    def __init__(self, title, prompt, numeric_response_only=False, expect_raw_input=False):
+    def __init__(self, title, prompt):
         self.title = title
         self.prompt = prompt
         self.choice_as_int = 0
-        self.choice_as_string = ""
-        self.numeric_response_only = numeric_response_only
-        self.expect_raw_input = expect_raw_input
-
         self.menu_items = []
 
     def add_menu_item(self, menu_item):
         self.menu_items.append(menu_item)
 
-    def get_choice_as_int(self):
+    def get_choice(self):
         return self.choice_as_int
-
-    def get_choice_as_string(self):
-        return self.choice_as_string
 
     def display(self):
         self.choice_as_int = 0
-        self.choice_as_string = ""
         total_padding_amount = 0
         padding_amount = 0
         # count up all the menu items to see how many
@@ -81,46 +64,105 @@ class Menu:
             if column == number_columns-1:
                 menu_buffer += "\n"
             menu_index += 1
-        print(menu_buffer)
+        if menu_buffer != "":
+            print(menu_buffer)
         valid_choice = False
         while not valid_choice:
-            self.choice_as_string = input(self.prompt)
-            if self.numeric_response_only:
+            choice_as_string = input(self.prompt)
+            if choice_as_string != "":
                 try:
-                    self.choice_as_int = int(self.choice_as_string)
-                    if not self.expect_raw_input:
-                        if self.choice_as_int >= 1 and self.choice_as_int <= len(self.menu_items):
-                            valid_choice = True
-                    else:
+                    self.choice_as_int = int(choice_as_string)
+                    if self.choice_as_int >= 1 and self.choice_as_int <= len(self.menu_items):
                         valid_choice = True
                 except ValueError:
                     valid_choice = False
-
-                if not valid_choice:
-                    print("Sorry, please try again.")
-            else:
-                valid_choice = True
+            if not valid_choice:
+                print("Sorry, please try again.")
+        return self
 
 
 class MenuItem:
+    # MenuItem creates a single choice in a MenuChoiceInput
+
     def __init__(self, prompt, function, index):
         self.prompt = prompt
         self.function = function
         self.index = index
 
 
+class MenuStringInput:
+    # MenuStringInput creats a menu that accepts string data only.
+
+    def __init__(self, title, prompt):
+        self.title = title
+        self.prompt = prompt
+        self.choice_as_string = ""
+
+    def display(self):
+        self.choice_as_string = ""
+        menu_buffer = ""
+        if self.title != "":
+            print(self.title + "\n")
+
+        valid_choice = False
+        while not valid_choice:
+            self.choice_as_string = input(self.prompt).strip()
+            if self.choice_as_string != "":
+                valid_choice = True
+
+            if not valid_choice:
+                print("Sorry, please try again.")
+        return self
+
+    def get_choice(self):
+        return self.choice_as_string
+
+
+class MenuIntegerInput:
+    # MenuStringInput creats a menu that accepts raw integer data only.
+
+    def __init__(self, title, prompt):
+        self.title = title
+        self.prompt = prompt
+        self.choice_as_int = 0
+
+    def display(self):
+        self.choice_as_int = 0
+        menu_buffer = ""
+        if self.title != "":
+            print(self.title + "\n")
+
+        valid_choice = False
+        while not valid_choice:
+            choice_as_string = input(self.prompt).strip()
+            if choice_as_string != "":
+                try:
+                    self.choice_as_int = int(choice_as_string)
+                    valid_choice = True
+                except ValueError:
+                    valid_choice = False
+
+            if not valid_choice:
+                print("Sorry, please try again.")
+        return self
+
+    def get_choice(self):
+        return self.choice_as_int
+
+
 if __name__ == '__main__':
-    logging.basicConfig(filename='tmp/yildor.log',
-                        format='%(asctime)s [%(levelname)s] %(filename)s:%(lineno)d %(message)s',
-                        level=logging.DEBUG)
-    menu1 = Menu("Do you want to...",
-                 "Enter the number of your choice: ", True)
+    # logging.basicConfig(filename='tmp/yildor.log',
+    #                     format='%(asctime)s [%(levelname)s] %(filename)s:%(lineno)d %(message)s',
+    #                     level=logging.DEBUG)
+    menu1 = MenuChoiceInput("Do you want to...",
+                            "Enter the number of your choice: ")
     menu1.add_menu_item(MenuItem("Choose chips", "c1", 1))
     menu1.add_menu_item(MenuItem("Choose card", "c2", 2))
     menu1.add_menu_item(MenuItem("Pay for reserved card", "c3", 3))
     menu1.display()
-    print("you chose: " + str(menu1.get_choice_as_int()))
-    menu2 = Menu("", "Enter the number of your choice: ", True)
+    print("you chose: " + str(menu1.get_choice()))
+    menu2 = MenuChoiceInput(
+        "Choose chips", "Enter the number of your choice: ")
     menu2.add_menu_item(MenuItem("Choose 2 diamonds", "c1", 1))
     menu2.add_menu_item(MenuItem("Choose 2 sapphires", "c2", 2))
     menu2.add_menu_item(MenuItem("Choose 2 emeralds", "c3", 3))
@@ -132,11 +174,15 @@ if __name__ == '__main__':
     menu2.add_menu_item(MenuItem("Choose 1 ruby", "c9", 9))
     menu2.add_menu_item(MenuItem("Choose 1 onyx", "c10", 10))
     menu2.display()
-    menu_3 = Menu("", "How many players are playing (please enter a number)? ", True, True)
-    menu_3.display()
-    x = menu_3.get_choice_as_int()
+    print("you chose: " + str(menu2.get_choice()))
+    menu3 = MenuIntegerInput(
+        "", "How many players are playing (please enter a number)? ")
+    menu3.display()
+    x = menu3.get_choice()
     list_of_players = []
     for i in range(x):
-        player = input("Enter the name for player " + str(i + 1) + ": ")
-        list_of_players.append(player)
+        player_menu = MenuStringInput("", "Enter the name for player " +
+                                      str(i + 1) + ": ").display()
+        name = player_menu.get_choice()
+        list_of_players.append(name)
     print(list_of_players)
