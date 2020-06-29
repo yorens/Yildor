@@ -100,7 +100,6 @@ class MenuStringInput:
 
     def display(self):
         self.choice_as_string = ""
-        menu_buffer = ""
         if self.title != "":
             print(self.title + "\n")
 
@@ -128,7 +127,6 @@ class MenuIntegerInput:
 
     def display(self):
         self.choice_as_int = 0
-        menu_buffer = ""
         if self.title != "":
             print(self.title + "\n")
 
