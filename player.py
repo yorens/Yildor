@@ -18,7 +18,7 @@ class Player:
         self.wild_tokens = 0
 
     def to_string(self):
-        return "<player name: " + self.name + ">"
+        return "<player name: " + self.name + ", total chips: " + str(self.total_num_chips()) + ">"
         
     def emerald_cards_currently(self):
         return len(self.emerald_cards)
@@ -49,6 +49,10 @@ class Player:
 
     def onyx_chips_currently(self):
         return self.onyx_chips
+    
+    def total_num_chips(self):
+        return (self.diamond_chips + self.sapphire_chips + 
+            self.emerald_chips + self.ruby_chips + self.onyx_chips)
 
     def add_card(self, card):
         card_type = card.gem_type
