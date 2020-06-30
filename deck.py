@@ -9,6 +9,9 @@ class Deck:
         else:
             self.cards = cards
 
+    def __iter__(self):
+        return iter(self.cards)
+
     def __repr__(self):
         buffer = "{size: " + str(len(self.cards)) + "\n"
         if len(self.cards) > 0:
