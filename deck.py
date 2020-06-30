@@ -9,6 +9,23 @@ class Deck:
         else:
             self.cards = cards
 
+    def __repr__(self):
+        buffer = "{size: " + str(len(self.cards)) + "\n"
+        if len(self.cards) > 0:
+            for card in self.cards:
+                buffer += " " + str(card) + "\n"
+
+        buffer += "}"
+        return buffer
+
+    def __str__(self):
+        buffer = "Deck(size=" + str(len(self.cards)) + "\n"
+        if len(self.cards) > 0:
+            for card in self.cards:
+                buffer += " " + str(card) + "\n"
+
+        buffer += ")"
+        return buffer
 
     def add_card(self, card):
         self.cards.append(card)

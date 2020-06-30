@@ -9,6 +9,12 @@ class Card:
         self.ruby_cost = ruby_cost
         self.onyx_cost = onyx_cost
 
+    def __repr__(self):
+        return "{rank: " + str(self.rank) + ", point_value: " + str(self.point_value) + ", gem_type: " + str(self.gem_type) + "}"
+
+    def __str__(self):
+        return 'Card(rank='+str(self.rank)+', point_value='+str(self.point_value)+', gem_type='+str(self.gem_type)+', diamond_cost='+str(self.diamond_cost)+', sapphire_cost='+str(self.sapphire_cost)+', emerald_cost='+str(self.emerald_cost)+', ruby_cost='+str(self.ruby_cost)+', onyx_cost='+str(self.onyx_cost) + ')'
+
     def set_cost_diamond(self, value):
         self.diamond_cost = value
         return self
