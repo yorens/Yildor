@@ -1,31 +1,38 @@
+import card
 import random
+
+
 class Deck:
-    def __init__(self):
-        self.deck = []
+    def __init__(self, cards=None):
+        if cards is None:
+            self.cards = []
+        else:
+            self.cards = cards
+
 
     def add_card(self, card):
-        self.deck.append(card)
+        self.cards.append(card)
 
     def remove_card(self, input_card):
-        for card in self.deck:
+        for card in self.cards:
             if card == input_card:
-                self.deck.remove(input_card)
+                self.cards.remove(input_card)
 
     def contains(self, input_card):
-        for card in self.deck:
+        for card in self.cards:
             if card == input_card:
                 return True
         return False
-    
+
     def shuffle_deck(self):
-        random.shuffle(self.deck)
+        random.shuffle(self.cards)
 
     def deal_card(self):
-        if len(self.deck) == 0:
+        if len(self.cards) == 0:
             return None
-        card = self.deck[0]
-        del self.deck[0]
+        card = self.cards[0]
+        del self.cards[0]
         return card
-                
+
     def length(self):
-        return len(self.deck)
+        return len(self.cards)
