@@ -1,3 +1,4 @@
+import random
 class Board:
     def __init__(self, rank_1_deck=[], rank_2_deck=[], rank_3_deck=[], noble_deck=[], bank=[]):
         self.rank_1_deck = rank_1_deck
@@ -15,14 +16,19 @@ class Board:
     def print_top_line(self):
         print("------")
 
-    def cards_deployed(self):
+    def start(self, num_players):
+        random.shuffle(self.rank_1_deck)
+        random.shuffle(self.rank_2_deck)
+        random.shuffle(self.rank_3_deck)
+        random.shuffle(self.noble_deck)
         self.rank_1_cards_deployed = [self.rank_1_deck[0], self.rank_1_deck[1], self.rank_1_deck[2], self.rank_1_deck[3]]
         self.rank_2_cards_deployed = [self.rank_2_deck[0], self.rank_2_deck[1], self.rank_2_deck[2], self.rank_2_deck[3]]
         self.rank_3_cards_deployed = [self.rank_3_deck[0], self.rank_3_deck[1], self.rank_3_deck[2], self.rank_3_deck[3]]
-        self.noble_cards_deployed = [self.noble_deck[0], self.noble_deck[1], self.noble_deck[2], self.noble_deck[3]]
-
+        for i in range(num_players + 1):
+            self.noble_cards_deployed.append(self.noble_deck[i])
+        
     def display(self):
-        RowOfSevenLines(self.noble_cards_deployed).print_row()
+        NobleRowOfSevenLines(self.noble_cards_deployed).print_row()
         RowOfSevenLines(self.rank_3_cards_deployed).print_row()
         RowOfSevenLines(self.rank_2_cards_deployed).print_row()
         RowOfSevenLines(self.rank_1_cards_deployed).print_row()
@@ -256,15 +262,15 @@ class NobleRowOfSevenLines:
             if length == 5:
                 if card != self.cards[0]:
                     buffer += "   " 
-                buffer += "| "+str(card.cost_sapphire())+" Emerald(s)       |"
+                buffer += "| "+str(card.cost_emerald())+" Emerald(s)       |"
             if length == 4:
                 if card != self.cards[0]:
                     buffer += "      " 
-                buffer += "| "+str(card.cost_sapphire())+" Emerald(s)           |"
+                buffer += "| "+str(card.cost_emerald())+" Emerald(s)           |"
             if length == 3:
                 if card != self.cards[0]:
                     buffer += "                         " 
-                buffer += "| "+str(card.cost_sapphire())+" Emerald(s)         |"
+                buffer += "| "+str(card.cost_emerald())+" Emerald(s)         |"
         return buffer
 
     def row_6(self):

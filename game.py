@@ -123,13 +123,7 @@ class Game:
         rank4.append(card.Card(4, 3, yildor.noble, 4, 4, 0, 0, 0))
         rank4.append(card.Card(4, 3, yildor.noble, 0, 0, 0, 4, 4))
         rank4.append(card.Card(4, 3, yildor.noble, 0, 4, 4, 0, 0))
-        random.shuffle(rank1)
-        random.shuffle(rank2)
-        random.shuffle(rank3)
-        random.shuffle(rank4)
-        # num_players = self.get_num_players()
         self.board = board.Board(rank1, rank2, rank3, rank4, [5, 5, 5, 5, 5])
-        self.board.cards_deployed()
 
     def get_num_players(self):
         return len(self.players)
@@ -158,25 +152,8 @@ class Game:
                                                     "Enter the name for player " + str(i + 1) + ": ")
             player_name_menu.display()
             self.players.append(player.Player(player_name_menu.get_choice()))
+        self.board.start(self.get_num_players())
 
-        self.players[0].add_chip(chip.Chip(yildor.diamond))
-        # print(self.players[0].to_string())
-        self.players[0].add_chip(chip.Chip(yildor.diamond))
-        self.players[0].add_chip(chip.Chip(yildor.diamond))
-        self.players[0].add_chip(chip.Chip(yildor.diamond))
-        self.players[0].add_chip(chip.Chip(yildor.diamond))
-        self.players[0].add_chip(chip.Chip(yildor.diamond))
-        self.players[0].add_chip(chip.Chip(yildor.diamond))
-        self.players[0].add_chip(chip.Chip(yildor.diamond))
-        self.players[0].add_chip(chip.Chip(yildor.diamond))
-        self.players[0].add_chip(chip.Chip(yildor.diamond))
-        # print(self.players[0].to_string())
-        # for p in self.players:
-        #     print(p.to_string())
-
-
-    # def create_second_menu(self):
-    #     second_menu = menu.Menu("Hp", "o")
 
     def create_turn_menu(self):
         turn_choice_menu = menu.MenuChoiceInput("Do you want to...",
@@ -196,7 +173,7 @@ class Game:
             self.board.display()
             turn_menu = self.create_turn_menu()
             if turn_menu.get_choice() == 1:
-                print("Choosing chips")
+                print("Ok. Choosing chips.")
             elif turn_menu.get_choice() == 2:
                 print("Buying card")
             self.move_to_next_player()
