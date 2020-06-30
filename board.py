@@ -4,12 +4,30 @@ class Board:
         self.rank_2_deck = rank_2_deck
         self.rank_3_deck = rank_3_deck
         self.noble_deck = noble_deck
+        self.rank_1_cards_deployed = []
+        self.rank_2_cards_deployed = []
+        self.rank_3_cards_deployed = []
+        self.noble_cards_deployed = []
         self.bank = bank
 
     # TODO method created to demonstrate capturing printed
     # output for testing purposes
     def print_top_line(self):
         print("------")
+
+    def cards_deployed(self):
+        self.rank_1_cards_deployed = [self.rank_1_deck[0], self.rank_1_deck[1], self.rank_1_deck[2], self.rank_1_deck[3]]
+        self.rank_2_cards_deployed = [self.rank_2_deck[0], self.rank_2_deck[1], self.rank_2_deck[2], self.rank_2_deck[3]]
+        self.rank_3_cards_deployed = [self.rank_3_deck[0], self.rank_3_deck[1], self.rank_3_deck[2], self.rank_3_deck[3]]
+        self.noble_cards_deployed = [self.noble_deck[0], self.noble_deck[1], self.noble_deck[2], self.noble_deck[3]]
+
+    def display(self):
+        RowOfSevenLines(self.noble_cards_deployed).print_row()
+        RowOfSevenLines(self.rank_3_cards_deployed).print_row()
+        RowOfSevenLines(self.rank_2_cards_deployed).print_row()
+        RowOfSevenLines(self.rank_1_cards_deployed).print_row()
+
+
 
 # RowOfSevenLines prints a row of 1-4 cards
 # in seven lines.
