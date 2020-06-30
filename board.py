@@ -1,15 +1,36 @@
+import bank
+import card
+import deck
 import random
+
+
 class Board:
-    def __init__(self, rank_1_deck=[], rank_2_deck=[], rank_3_deck=[], noble_deck=[], bank=[]):
-        self.rank_1_deck = rank_1_deck
-        self.rank_2_deck = rank_2_deck
-        self.rank_3_deck = rank_3_deck
-        self.noble_deck = noble_deck
+    def __init__(self, rank_1_deck=None, rank_2_deck=None, rank_3_deck=None, noble_deck=None, bank=None):
+        if rank_1_deck == None:
+            self.rank_1_deck = deck.Deck(None)
+        else:
+            self.rank_1_deck = deck.Deck(rank_1_deck)
+        if rank_2_deck == None:
+            self.rank_2_deck = deck.Deck(None)
+        else:
+            self.rank_2_deck = deck.Deck(rank_2_deck)
+        if rank_3_deck == None:
+            self.rank_3_deck = deck.Deck(None)
+        else:
+            self.rank_3_deck = deck.Deck(rank_3_deck)
+        if noble_deck == None:
+            self.noble_deck = deck.Deck(None)
+        else:
+            self.noble_deck = deck.Deck(noble_deck)
+
+        if bank == None:
+            self.bank = bank.Bank(0, 0, 0, 0, 0)
+        else:
+            self.bank = bank
         self.rank_1_cards_deployed = []
         self.rank_2_cards_deployed = []
         self.rank_3_cards_deployed = []
         self.noble_cards_deployed = []
-        self.bank = bank
 
     # TODO method created to demonstrate capturing printed
     # output for testing purposes
@@ -17,16 +38,26 @@ class Board:
         print("------")
 
     def start(self, num_players):
-        random.shuffle(self.rank_1_deck)
-        random.shuffle(self.rank_2_deck)
-        random.shuffle(self.rank_3_deck)
-        random.shuffle(self.noble_deck)
-        self.rank_1_cards_deployed = [self.rank_1_deck[0], self.rank_1_deck[1], self.rank_1_deck[2], self.rank_1_deck[3]]
-        self.rank_2_cards_deployed = [self.rank_2_deck[0], self.rank_2_deck[1], self.rank_2_deck[2], self.rank_2_deck[3]]
-        self.rank_3_cards_deployed = [self.rank_3_deck[0], self.rank_3_deck[1], self.rank_3_deck[2], self.rank_3_deck[3]]
+        self.rank_1_deck.shuffle_deck()
+        self.rank_2_deck.shuffle_deck()
+        self.rank_3_deck.shuffle_deck()
+        self.noble_deck.shuffle_deck()
+        self.rank_1_cards_deployed.append(self.rank_1_deck.deal_card())
+        self.rank_1_cards_deployed.append(self.rank_1_deck.deal_card())
+        self.rank_1_cards_deployed.append(self.rank_1_deck.deal_card())
+        self.rank_1_cards_deployed.append(self.rank_1_deck.deal_card())
+        self.rank_2_cards_deployed.append(self.rank_2_deck.deal_card())
+        self.rank_2_cards_deployed.append(self.rank_2_deck.deal_card())
+        self.rank_2_cards_deployed.append(self.rank_2_deck.deal_card())
+        self.rank_2_cards_deployed.append(self.rank_2_deck.deal_card())
+        self.rank_3_cards_deployed.append(self.rank_3_deck.deal_card())
+        self.rank_3_cards_deployed.append(self.rank_3_deck.deal_card())
+        self.rank_3_cards_deployed.append(self.rank_3_deck.deal_card())
+        self.rank_3_cards_deployed.append(self.rank_3_deck.deal_card())
+
         for i in range(num_players + 1):
-            self.noble_cards_deployed.append(self.noble_deck[i])
-        
+            self.noble_cards_deployed.append(self.noble_deck.deal_card())
+
     def display(self):
         NobleRowOfSevenLines(self.noble_cards_deployed).print_row()
         RowOfSevenLines(self.rank_3_cards_deployed).print_row()
