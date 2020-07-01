@@ -115,7 +115,7 @@ class Board:
                 NobleRowOfSevenLines(d).print_row()
                 d = []
         if len(d) > 0:
-            RowOfSevenLines(d).print_row()
+            NobleRowOfSevenLines(d).print_row()
         print("********************************************************* DEBUG ********************************************************* ")
 
 # RowOfSevenLines prints a row of 1-4 cards
@@ -207,10 +207,8 @@ class RowOfSevenLines:
         card_number = 1
         rank = self.cards[0].get_rank()
         if rank == 1:
-            card_number = 13
-        elif rank == 2:
             card_number = 9
-        elif rank == 3:
+        elif rank == 2:
             card_number = 5
 
         buffer = ""
@@ -268,7 +266,7 @@ class NobleRowOfSevenLines:
                 if card != self.cards[0]:
                     buffer += "      "
                 buffer += "┌────────────────────────┐"
-            elif length == 3:
+            elif length <= 3:
                 if card != self.cards[0]:
                     buffer += "                         "
                 buffer += "┌──────────────────────┐"
@@ -288,7 +286,7 @@ class NobleRowOfSevenLines:
                 if card != self.cards[0]:
                     buffer += "      "
                 buffer += "| " + str(card.get_point_value()) + (" " * spaces) + card.get_gem_type()+"|"
-            if length == 3:
+            if length <= 3:
                 spaces = 15
                 if card != self.cards[0]:
                     buffer += "                         "
@@ -307,7 +305,7 @@ class NobleRowOfSevenLines:
                 if card != self.cards[0]:
                     buffer += "      " 
                 buffer += "|        Rank "+str(card.get_rank())+"          |"
-            if length == 3:
+            if length <= 3:
                 if card != self.cards[0]:
                     buffer += "                         " 
                 buffer += "|        Rank "+str(card.get_rank())+"        |"
@@ -325,7 +323,7 @@ class NobleRowOfSevenLines:
                 if card != self.cards[0]:
                     buffer += "      " 
                 buffer += "| "+str(card.cost_diamond())+" Diamond(s)           |"
-            if length == 3:
+            if length <= 3:
                 if card != self.cards[0]:
                     buffer += "                         " 
                 buffer += "| "+str(card.cost_diamond())+" Diamond(s)         |"
@@ -343,7 +341,7 @@ class NobleRowOfSevenLines:
                 if card != self.cards[0]:
                     buffer += "      " 
                 buffer += "| "+str(card.cost_sapphire())+" Sapphire(s)          |"
-            if length == 3:
+            if length <= 3:
                 if card != self.cards[0]:
                     buffer += "                         " 
                 buffer += "| "+str(card.cost_sapphire())+" Sapphire(s)        |"
@@ -361,7 +359,7 @@ class NobleRowOfSevenLines:
                 if card != self.cards[0]:
                     buffer += "      " 
                 buffer += "| "+str(card.cost_emerald())+" Emerald(s)           |"
-            if length == 3:
+            if length <= 3:
                 if card != self.cards[0]:
                     buffer += "                         " 
                 buffer += "| "+str(card.cost_emerald())+" Emerald(s)         |"
@@ -379,7 +377,7 @@ class NobleRowOfSevenLines:
                 if card != self.cards[0]:
                     buffer += "      " 
                 buffer += "| "+str(card.cost_ruby())+" Ruby(s)              |"
-            if length == 3:
+            if length <= 3:
                 if card != self.cards[0]:
                     buffer += "                         " 
                 buffer += "| "+str(card.cost_ruby())+" Ruby(s)            |"
@@ -399,7 +397,7 @@ class NobleRowOfSevenLines:
                     buffer += "      "
                 buffer += "| "+str(card.cost_onyx())+" Onyx(s) {1:13}|".format(
                     card.cost_onyx(), "")
-            if length == 3:
+            if length <= 3:
                 if card != self.cards[0]:
                     buffer += "                         "
                 buffer += "| {0:1} Onyx(s) {1:11}|".format(
@@ -418,7 +416,7 @@ class NobleRowOfSevenLines:
                 if card != self.cards[0]:
                     buffer += "      "
                 buffer += "└────────────────────────┘"
-            elif length == 3:
+            elif length <= 3:
                 if card != self.cards[0]:
                     buffer += "                         "
                 buffer += "└──────────────────────┘"
