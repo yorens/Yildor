@@ -200,11 +200,22 @@ class RowOfSevenLines:
         return buffer
 
     def row_7(self):
+        card_number = 1
+        rank = self.cards[0].get_rank()
+        if rank == 1:
+            card_number = 13
+        elif rank == 2:
+            card_number = 9
+        elif rank == 3:
+            card_number = 5
+
         buffer = ""
         for card in self.cards:
             if card != self.cards[0]:
-                buffer += "      " 
-            buffer += "| "+str(card.cost_onyx())+" Onyx(s)              |"
+                buffer += "      "
+            buffer += "| {0:1} Onyx(s) {1:13}|".format(
+                card.cost_onyx(), card_number)
+            card_number += 1
         return buffer
 
     def row_footer(self):
@@ -371,21 +382,26 @@ class NobleRowOfSevenLines:
         return buffer
 
     def row_7(self):
-        buffer  = ""
+        card_number = 1
+        buffer = ""
         length = len(self.cards)
         for card in self.cards:
             if length == 5:
                 if card != self.cards[0]:
-                    buffer += "   " 
-                buffer += "| "+str(card.cost_onyx())+" Onyx(s)          |"
+                    buffer += "   "
+                buffer += "| "+str(card.cost_onyx())+" Onyx(s)  {1:8}|".format(
+                    card.cost_onyx(), card_number)
             if length == 4:
                 if card != self.cards[0]:
-                    buffer += "      " 
-                buffer += "| "+str(card.cost_onyx())+" Onyx(s)              |"
+                    buffer += "      "
+                buffer += "| "+str(card.cost_onyx())+" Onyx(s) {1:13}|".format(
+                    card.cost_onyx(), card_number)
             if length == 3:
                 if card != self.cards[0]:
-                    buffer += "                         " 
-                buffer += "| "+str(card.cost_onyx())+" Onyx(s)            |"
+                    buffer += "                         "
+                buffer += "| {0:1} Onyx(s) {1:11}|".format(
+                    card.cost_onyx(), card_number)
+            card_number += 1
         return buffer
 
     def row_footer(self):
