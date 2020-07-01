@@ -28,8 +28,11 @@ class Game:
     def get_num_players(self):
         return len(self.players)
 
-    def display(self, string):
-        print(string)
+    def debug_print(self, obj):
+        print("*DEBUG*: " + str(obj))
+
+    def debug_display(self):
+        self.board.debug_display()
 
     def create_first_menu(self):
         first_menu = menu.MenuChoiceInput("Do you want to...",
@@ -58,7 +61,7 @@ class Game:
     def create_turn_menu(self):
         turn_choice_menu = menu.MenuChoiceInput("Do you want to...",
                                 "Enter the number of your choice:")
-        print(self.current_player().to_string())
+        self.debug_print(self.current_player())
         if self.current_player().total_num_chips() < 10:
             turn_choice_menu.add_menu_item(menu.MenuItem("Choose chips", "c1", 1))
         turn_choice_menu.add_menu_item(menu.MenuItem("Buy card", "c2", 2))

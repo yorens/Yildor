@@ -17,9 +17,12 @@ class Player:
         self.onyx_cards = []
         self.wild_tokens = 0
 
-    def to_string(self):
-        return "<player name: " + self.name + ", total chips: " + str(self.total_num_chips()) + ">"
-        
+    def __repr__(self):
+        return "{name: " + self.name + ", chips: " + str(self.total_num_chips()) + "}"
+
+    def __str__(self):
+        return "Player(name=" + self.name + ", chips: " + str(self.total_num_chips()) + ")"
+
     def emerald_cards_currently(self):
         return len(self.emerald_cards)
     

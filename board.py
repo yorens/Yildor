@@ -64,7 +64,55 @@ class Board:
         RowOfSevenLines(self.rank_2_cards_deployed).print_row()
         RowOfSevenLines(self.rank_1_cards_deployed).print_row()
 
+    def debug_display(self):
+        # break the deck into rows of four
+        print("********************************************************* DEBUG ********************************************************* ")
+        d = []
+        print("rank 1 deck:")
+        print(self.rank_1_deck)
+        for card in self.rank_1_deck:
+            print(card)
+            d.append(card)
+            if len(d) == 4:
+                RowOfSevenLines(d).print_row()
+                d = []
+        if len(d) > 0:
+            RowOfSevenLines(d).print_row()
 
+        d = []
+        print("rank 2 deck:")
+        print(self.rank_2_deck)
+        for card in self.rank_2_deck:
+            print(card)
+            d.append(card)
+            if len(d) == 4:
+                RowOfSevenLines(d).print_row()
+                d = []
+        if len(d) > 0:
+            RowOfSevenLines(d).print_row()
+        d = []
+        print("rank 3 deck:")
+        print(self.rank_3_deck)
+        for card in self.rank_3_deck:
+            print(card)
+            d.append(card)
+            if len(d) == 4:
+                RowOfSevenLines(d).print_row()
+                d = []
+        if len(d) > 0:
+            RowOfSevenLines(d).print_row()
+        d = []
+        print("noble deck:")
+        print(self.noble_deck)
+        for card in self.noble_deck:
+            print(card)
+            d.append(card)
+            if len(d) == 4:
+                NobleRowOfSevenLines(d).print_row()
+                d = []
+        if len(d) > 0:
+            RowOfSevenLines(d).print_row()
+        print("********************************************************* DEBUG ********************************************************* ")
 
 # RowOfSevenLines prints a row of 1-4 cards
 # in seven lines.
