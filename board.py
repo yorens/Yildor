@@ -59,7 +59,7 @@ class Board:
         self.rank_3_cards_deployed.append(self.rank_3_deck.deal_card())
         self.rank_3_cards_deployed.append(self.rank_3_deck.deal_card())
 
-        for i in range(num_players + 1):
+        for _ in range(num_players + 1):
             self.noble_cards_deployed.append(self.noble_deck.deal_card())
 
     def display(self):
