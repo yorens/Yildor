@@ -1,5 +1,5 @@
 PYTHONCMD=python3
-PYTHONTEST=$(PYTHONCMD) -m unittest -v 
+PYTHONTEST=$(PYTHONCMD) -m unittest -v --locals
 
 # deprecated
 .PHONY: old-test
@@ -22,3 +22,8 @@ test:
 	@echo running tests
 	@# python3 unit tests
 	@$(PYTHONTEST) tests/*.py
+
+.PHONY: debug
+debug:
+	@echo display debugging
+	@$(PYTHONCMD) debug.py
