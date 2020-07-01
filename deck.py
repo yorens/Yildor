@@ -12,6 +12,9 @@ class Deck:
     def __iter__(self):
         return iter(self.cards)
 
+    def __getitem__(self, key):
+        return self.cards[key]
+
     def __repr__(self):
         buffer = "{size: " + str(len(self.cards)) + "\n"
         if len(self.cards) > 0:
