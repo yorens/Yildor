@@ -5,28 +5,32 @@ import random
 
 
 class Board:
-    def __init__(self, rank_1_deck=None, rank_2_deck=None, rank_3_deck=None, noble_deck=None, bank=None):
-        if rank_1_deck == None:
+    def __init__(self, rank_1_deck=None, rank_2_deck=None, rank_3_deck=None, noble_deck=None, game_bank=None):
+        if rank_1_deck is None:
             self.rank_1_deck = deck.Deck(None)
         else:
             self.rank_1_deck = deck.Deck(rank_1_deck)
-        if rank_2_deck == None:
+
+        if rank_2_deck is None:
             self.rank_2_deck = deck.Deck(None)
         else:
             self.rank_2_deck = deck.Deck(rank_2_deck)
-        if rank_3_deck == None:
+
+        if rank_3_deck is None:
             self.rank_3_deck = deck.Deck(None)
         else:
             self.rank_3_deck = deck.Deck(rank_3_deck)
-        if noble_deck == None:
+
+        if noble_deck is None:
             self.noble_deck = deck.Deck(None)
         else:
             self.noble_deck = deck.Deck(noble_deck)
 
-        if bank == None:
+        if game_bank is None:
             self.bank = bank.Bank(0, 0, 0, 0, 0)
         else:
-            self.bank = bank
+            self.bank = game_bank
+
         self.rank_1_cards_deployed = []
         self.rank_2_cards_deployed = []
         self.rank_3_cards_deployed = []
