@@ -1,11 +1,12 @@
-import random
+import bank
+import board
+import card
+import chip
 import menu
 import player
+import random
 import time
-import chip
 import yildor
-import card
-import board
 
 
 class Game:
@@ -13,117 +14,16 @@ class Game:
         self.players = []
         self.current_player_number = 0
         # create decks
-        # create bank
-        self.board = []
         self.turns = []
         random.seed()
 
     def start(self):
-        rank1=[]
-        rank2=[]
-        rank3=[]
-        rank4=[]
-        rank1.append(card.Card(1, 1, yildor.diamond, 0, 0, 4, 0, 0))
-        rank1.append(card.Card(1, 0, yildor.diamond, 0, 2, 0, 0, 2))
-        rank1.append(card.Card(1, 0, yildor.diamond, 0, 3, 0, 0, 0))
-        rank1.append(card.Card(1, 0, yildor.diamond, 0, 1, 1, 1, 1))
-        rank1.append(card.Card(1, 0, yildor.diamond, 0, 0, 0, 2, 1))
-        rank1.append(card.Card(1, 0, yildor.diamond, 0, 2, 2, 0, 1))
-        rank1.append(card.Card(1, 0, yildor.diamond, 0, 1, 2, 1, 1))
-        rank1.append(card.Card(1, 0, yildor.diamond, 3, 1, 0, 0, 1))
-        rank1.append(card.Card(1, 1, yildor.sapphire, 0, 0, 0, 4, 0))
-        rank1.append(card.Card(1, 0, yildor.sapphire, 1, 0, 0, 0, 2))
-        rank1.append(card.Card(1, 0, yildor.sapphire, 0, 0, 0, 0, 3))
-        rank1.append(card.Card(1, 0, yildor.sapphire, 1, 0, 1, 1, 1))
-        rank1.append(card.Card(1, 0, yildor.sapphire, 0, 0, 2, 0, 2))
-        rank1.append(card.Card(1, 0, yildor.sapphire, 1, 0, 2, 2, 0))
-        rank1.append(card.Card(1, 0, yildor.sapphire, 0, 1, 3, 1, 0))
-        rank1.append(card.Card(1, 0, yildor.sapphire, 1, 0, 1, 2, 1))
-        rank1.append(card.Card(1, 1, yildor.emerald, 0, 0, 0, 0, 4))
-        rank1.append(card.Card(1, 0, yildor.emerald, 0, 2, 0, 2, 0))
-        rank1.append(card.Card(1, 0, yildor.emerald, 0, 1, 0, 2, 2))
-        rank1.append(card.Card(1, 0, yildor.emerald, 2, 1, 0, 0, 0))
-        rank1.append(card.Card(1, 0, yildor.emerald, 1, 1, 0, 1, 1))
-        rank1.append(card.Card(1, 0, yildor.emerald, 1, 1, 0, 1, 2))
-        rank1.append(card.Card(1, 0, yildor.emerald, 0, 0, 0, 3, 0))
-        rank1.append(card.Card(1, 0, yildor.emerald, 1, 3, 1, 0, 0))
-        rank1.append(card.Card(1, 1, yildor.ruby, 4, 0, 0, 0, 0))
-        rank1.append(card.Card(1, 0, yildor.ruby, 2, 1, 1, 0, 1))
-        rank1.append(card.Card(1, 0, yildor.ruby, 3, 0, 0, 0, 0))
-        rank1.append(card.Card(1, 0, yildor.ruby, 1, 1, 1, 0, 1))
-        rank1.append(card.Card(1, 0, yildor.ruby, 2, 0, 1, 0, 2))
-        rank1.append(card.Card(1, 0, yildor.ruby, 0, 2, 1, 0, 0))
-        rank1.append(card.Card(1, 0, yildor.ruby, 2, 0, 0, 2, 0))
-        rank1.append(card.Card(1, 0, yildor.ruby, 1, 0, 0, 1, 3))
-        rank1.append(card.Card(1, 1, yildor.onyx, 0, 4, 0, 0, 0))
-        rank1.append(card.Card(1, 0, yildor.onyx, 1, 1, 1, 1, 0))
-        rank1.append(card.Card(1, 0, yildor.onyx, 0, 0, 3, 0, 0))
-        rank1.append(card.Card(1, 0, yildor.onyx, 1, 2, 1, 1, 0))
-        rank1.append(card.Card(1, 0, yildor.onyx, 0, 0, 1, 3, 1))
-        rank1.append(card.Card(1, 0, yildor.onyx, 0, 0, 2, 1, 0))
-        rank1.append(card.Card(1, 0, yildor.onyx, 2, 2, 0, 1, 0))
-        rank1.append(card.Card(1, 0, yildor.onyx, 2, 0, 2, 0, 0))
-        rank2.append(card.Card(2, 1, yildor.diamond, 2, 3, 0, 3, 0))
-        rank2.append(card.Card(2, 1, yildor.diamond, 0, 0, 3, 2, 2))
-        rank2.append(card.Card(2, 2, yildor.diamond, 0, 0, 1, 4, 2))
-        rank2.append(card.Card(2, 2, yildor.diamond, 0, 0, 0, 5, 3))
-        rank2.append(card.Card(2, 2, yildor.diamond, 0, 0, 0, 5, 0))
-        rank2.append(card.Card(2, 3, yildor.diamond, 6, 0, 0, 0, 0))
-        rank2.append(card.Card(2, 1, yildor.sapphire, 0, 2, 3, 0, 3))
-        rank2.append(card.Card(2, 1, yildor.sapphire, 0, 2, 2, 3, 0))
-        rank2.append(card.Card(2, 2, yildor.sapphire, 5, 3, 0, 0, 0))
-        rank2.append(card.Card(2, 2, yildor.sapphire, 2, 0, 0, 1, 4))
-        rank2.append(card.Card(2, 2, yildor.sapphire, 0, 5, 0, 0, 0))
-        rank2.append(card.Card(2, 3, yildor.sapphire, 0, 6, 0, 0, 0))
-        rank2.append(card.Card(2, 1, yildor.emerald, 2, 3, 0, 0, 2))
-        rank2.append(card.Card(2, 1, yildor.emerald, 3, 0, 2, 3, 0))
-        rank2.append(card.Card(2, 2, yildor.emerald, 4, 2, 0, 0, 1))
-        rank2.append(card.Card(2, 2, yildor.emerald, 0, 0, 5, 0, 0))
-        rank2.append(card.Card(2, 2, yildor.emerald, 0, 5, 3, 0, 0))
-        rank2.append(card.Card(2, 3, yildor.emerald, 0, 0, 6, 0, 0))
-        rank2.append(card.Card(2, 1, yildor.ruby, 2, 0, 0, 2, 3))
-        rank2.append(card.Card(2, 1, yildor.ruby, 0, 3, 0, 2, 3))
-        rank2.append(card.Card(2, 2, yildor.ruby, 1, 4, 2, 0, 0))
-        rank2.append(card.Card(2, 2, yildor.ruby, 3, 0, 0, 0, 5))
-        rank2.append(card.Card(2, 2, yildor.ruby, 0, 0, 0, 0, 5))
-        rank2.append(card.Card(2, 3, yildor.ruby, 0, 0, 0, 6, 0))
-        rank2.append(card.Card(2, 1, yildor.onyx, 3, 0, 3, 0, 2))
-        rank2.append(card.Card(2, 1, yildor.onyx, 3, 2, 2, 0, 0))
-        rank2.append(card.Card(2, 2, yildor.onyx, 0, 1, 4, 2, 0))
-        rank2.append(card.Card(2, 2, yildor.onyx, 5, 0, 0, 0, 0))
-        rank2.append(card.Card(2, 2, yildor.onyx, 0, 0, 5, 3, 0))
-        rank2.append(card.Card(2, 3, yildor.onyx, 0, 0, 0, 0, 6))
-        rank3.append(card.Card(3, 3, yildor.diamond, 0, 3, 3, 5, 3))
-        rank3.append(card.Card(3, 4, yildor.diamond, 3, 0, 0, 3, 6))
-        rank3.append(card.Card(3, 4, yildor.diamond, 0, 0, 0, 0, 7))
-        rank3.append(card.Card(3, 5, yildor.diamond, 3, 0, 0, 0, 7))
-        rank3.append(card.Card(3, 3, yildor.sapphire, 3, 0, 3, 3, 5))
-        rank3.append(card.Card(3, 4, yildor.sapphire, 6, 3, 0, 0, 3))
-        rank3.append(card.Card(3, 4, yildor.sapphire, 7, 0, 0, 0, 0))
-        rank3.append(card.Card(3, 5, yildor.sapphire, 7, 3, 0, 0, 0))
-        rank3.append(card.Card(3, 3, yildor.emerald, 5, 3, 0, 3, 3))
-        rank3.append(card.Card(3, 4, yildor.emerald, 3, 6, 3, 0, 0))
-        rank3.append(card.Card(3, 4, yildor.emerald, 0, 7, 0, 0, 0))
-        rank3.append(card.Card(3, 5, yildor.emerald, 0, 7, 3, 0, 0))
-        rank3.append(card.Card(3, 3, yildor.ruby, 3, 5, 3, 0, 3))
-        rank3.append(card.Card(3, 4, yildor.ruby, 0, 0, 7, 0, 0))
-        rank3.append(card.Card(3, 4, yildor.ruby, 0, 3, 6, 3, 0))
-        rank3.append(card.Card(3, 5, yildor.ruby, 0, 0, 7, 3, 0))
-        rank3.append(card.Card(3, 3, yildor.onyx, 3, 3, 5, 3, 0))
-        rank3.append(card.Card(3, 4, yildor.onyx, 0, 0, 0, 7, 0))
-        rank3.append(card.Card(3, 4, yildor.onyx, 0, 0, 3, 6, 3))
-        rank3.append(card.Card(3, 5, yildor.onyx, 0, 0, 0, 7, 3))
-        rank4.append(card.Card(4, 3, yildor.noble, 3, 0, 0, 3, 3))
-        rank4.append(card.Card(4, 3, yildor.noble, 0, 3, 3, 3, 0))
-        rank4.append(card.Card(4, 3, yildor.noble, 3, 3, 0, 0, 3))
-        rank4.append(card.Card(4, 3, yildor.noble, 0, 0, 3, 3, 3))
-        rank4.append(card.Card(4, 3, yildor.noble, 3, 3, 3, 0, 0))
-        rank4.append(card.Card(4, 3, yildor.noble, 0, 0, 4, 4, 0))
-        rank4.append(card.Card(4, 3, yildor.noble, 4, 0, 0, 0, 4))
-        rank4.append(card.Card(4, 3, yildor.noble, 4, 4, 0, 0, 0))
-        rank4.append(card.Card(4, 3, yildor.noble, 0, 0, 0, 4, 4))
-        rank4.append(card.Card(4, 3, yildor.noble, 0, 4, 4, 0, 0))
-        self.board = board.Board(rank1, rank2, rank3, rank4, [5, 5, 5, 5, 5])
+        rank1 = all_rank_1_cards()
+        rank2 = all_rank_2_cards()
+        rank3 = all_rank_3_cards()
+        rank4 = all_noble_cards()
+        self.board = board.Board(
+            rank1, rank2, rank3, rank4, bank.Bank(5, 5, 5, 5, 5))
 
     def get_num_players(self):
         return len(self.players)
@@ -185,6 +85,130 @@ class Game:
         self.current_player_number += 1
         if self.current_player_number >= len(self.players):
             self.current_player_number = 0
+
+
+def all_rank_1_cards():
+    # return an array of all rank 1 cards
+    cards = []
+    cards.append(card.Card(1, 1, yildor.diamond, 0, 0, 4, 0, 0))
+    cards.append(card.Card(1, 0, yildor.diamond, 0, 2, 0, 0, 2))
+    cards.append(card.Card(1, 0, yildor.diamond, 0, 3, 0, 0, 0))
+    cards.append(card.Card(1, 0, yildor.diamond, 0, 1, 1, 1, 1))
+    cards.append(card.Card(1, 0, yildor.diamond, 0, 0, 0, 2, 1))
+    cards.append(card.Card(1, 0, yildor.diamond, 0, 2, 2, 0, 1))
+    cards.append(card.Card(1, 0, yildor.diamond, 0, 1, 2, 1, 1))
+    cards.append(card.Card(1, 0, yildor.diamond, 3, 1, 0, 0, 1))
+    cards.append(card.Card(1, 1, yildor.sapphire, 0, 0, 0, 4, 0))
+    cards.append(card.Card(1, 0, yildor.sapphire, 1, 0, 0, 0, 2))
+    cards.append(card.Card(1, 0, yildor.sapphire, 0, 0, 0, 0, 3))
+    cards.append(card.Card(1, 0, yildor.sapphire, 1, 0, 1, 1, 1))
+    cards.append(card.Card(1, 0, yildor.sapphire, 0, 0, 2, 0, 2))
+    cards.append(card.Card(1, 0, yildor.sapphire, 1, 0, 2, 2, 0))
+    cards.append(card.Card(1, 0, yildor.sapphire, 0, 1, 3, 1, 0))
+    cards.append(card.Card(1, 0, yildor.sapphire, 1, 0, 1, 2, 1))
+    cards.append(card.Card(1, 1, yildor.emerald, 0, 0, 0, 0, 4))
+    cards.append(card.Card(1, 0, yildor.emerald, 0, 2, 0, 2, 0))
+    cards.append(card.Card(1, 0, yildor.emerald, 0, 1, 0, 2, 2))
+    cards.append(card.Card(1, 0, yildor.emerald, 2, 1, 0, 0, 0))
+    cards.append(card.Card(1, 0, yildor.emerald, 1, 1, 0, 1, 1))
+    cards.append(card.Card(1, 0, yildor.emerald, 1, 1, 0, 1, 2))
+    cards.append(card.Card(1, 0, yildor.emerald, 0, 0, 0, 3, 0))
+    cards.append(card.Card(1, 0, yildor.emerald, 1, 3, 1, 0, 0))
+    cards.append(card.Card(1, 1, yildor.ruby, 4, 0, 0, 0, 0))
+    cards.append(card.Card(1, 0, yildor.ruby, 2, 1, 1, 0, 1))
+    cards.append(card.Card(1, 0, yildor.ruby, 3, 0, 0, 0, 0))
+    cards.append(card.Card(1, 0, yildor.ruby, 1, 1, 1, 0, 1))
+    cards.append(card.Card(1, 0, yildor.ruby, 2, 0, 1, 0, 2))
+    cards.append(card.Card(1, 0, yildor.ruby, 0, 2, 1, 0, 0))
+    cards.append(card.Card(1, 0, yildor.ruby, 2, 0, 0, 2, 0))
+    cards.append(card.Card(1, 0, yildor.ruby, 1, 0, 0, 1, 3))
+    cards.append(card.Card(1, 1, yildor.onyx, 0, 4, 0, 0, 0))
+    cards.append(card.Card(1, 0, yildor.onyx, 1, 1, 1, 1, 0))
+    cards.append(card.Card(1, 0, yildor.onyx, 0, 0, 3, 0, 0))
+    cards.append(card.Card(1, 0, yildor.onyx, 1, 2, 1, 1, 0))
+    cards.append(card.Card(1, 0, yildor.onyx, 0, 0, 1, 3, 1))
+    cards.append(card.Card(1, 0, yildor.onyx, 0, 0, 2, 1, 0))
+    cards.append(card.Card(1, 0, yildor.onyx, 2, 2, 0, 1, 0))
+    cards.append(card.Card(1, 0, yildor.onyx, 2, 0, 2, 0, 0))
+    return cards
+
+
+def all_rank_2_cards():
+    # return an array of all rank 2 cards
+    cards = []
+    cards.append(card.Card(2, 1, yildor.diamond, 2, 3, 0, 3, 0))
+    cards.append(card.Card(2, 1, yildor.diamond, 0, 0, 3, 2, 2))
+    cards.append(card.Card(2, 2, yildor.diamond, 0, 0, 1, 4, 2))
+    cards.append(card.Card(2, 2, yildor.diamond, 0, 0, 0, 5, 3))
+    cards.append(card.Card(2, 2, yildor.diamond, 0, 0, 0, 5, 0))
+    cards.append(card.Card(2, 3, yildor.diamond, 6, 0, 0, 0, 0))
+    cards.append(card.Card(2, 1, yildor.sapphire, 0, 2, 3, 0, 3))
+    cards.append(card.Card(2, 1, yildor.sapphire, 0, 2, 2, 3, 0))
+    cards.append(card.Card(2, 2, yildor.sapphire, 5, 3, 0, 0, 0))
+    cards.append(card.Card(2, 2, yildor.sapphire, 2, 0, 0, 1, 4))
+    cards.append(card.Card(2, 2, yildor.sapphire, 0, 5, 0, 0, 0))
+    cards.append(card.Card(2, 3, yildor.sapphire, 0, 6, 0, 0, 0))
+    cards.append(card.Card(2, 1, yildor.emerald, 2, 3, 0, 0, 2))
+    cards.append(card.Card(2, 1, yildor.emerald, 3, 0, 2, 3, 0))
+    cards.append(card.Card(2, 2, yildor.emerald, 4, 2, 0, 0, 1))
+    cards.append(card.Card(2, 2, yildor.emerald, 0, 0, 5, 0, 0))
+    cards.append(card.Card(2, 2, yildor.emerald, 0, 5, 3, 0, 0))
+    cards.append(card.Card(2, 3, yildor.emerald, 0, 0, 6, 0, 0))
+    cards.append(card.Card(2, 1, yildor.ruby, 2, 0, 0, 2, 3))
+    cards.append(card.Card(2, 1, yildor.ruby, 0, 3, 0, 2, 3))
+    cards.append(card.Card(2, 2, yildor.ruby, 1, 4, 2, 0, 0))
+    cards.append(card.Card(2, 2, yildor.ruby, 3, 0, 0, 0, 5))
+    cards.append(card.Card(2, 2, yildor.ruby, 0, 0, 0, 0, 5))
+    cards.append(card.Card(2, 3, yildor.ruby, 0, 0, 0, 6, 0))
+    cards.append(card.Card(2, 1, yildor.onyx, 3, 0, 3, 0, 2))
+    cards.append(card.Card(2, 1, yildor.onyx, 3, 2, 2, 0, 0))
+    cards.append(card.Card(2, 2, yildor.onyx, 0, 1, 4, 2, 0))
+    cards.append(card.Card(2, 2, yildor.onyx, 5, 0, 0, 0, 0))
+    cards.append(card.Card(2, 2, yildor.onyx, 0, 0, 5, 3, 0))
+    cards.append(card.Card(2, 3, yildor.onyx, 0, 0, 0, 0, 6))
+    return cards
+
+
+def all_rank_3_cards():
+    # return an array of all rank 3 cards
+    cards = []
+    cards.append(card.Card(3, 3, yildor.diamond, 0, 3, 3, 5, 3))
+    cards.append(card.Card(3, 4, yildor.diamond, 3, 0, 0, 3, 6))
+    cards.append(card.Card(3, 4, yildor.diamond, 0, 0, 0, 0, 7))
+    cards.append(card.Card(3, 5, yildor.diamond, 3, 0, 0, 0, 7))
+    cards.append(card.Card(3, 3, yildor.sapphire, 3, 0, 3, 3, 5))
+    cards.append(card.Card(3, 4, yildor.sapphire, 6, 3, 0, 0, 3))
+    cards.append(card.Card(3, 4, yildor.sapphire, 7, 0, 0, 0, 0))
+    cards.append(card.Card(3, 5, yildor.sapphire, 7, 3, 0, 0, 0))
+    cards.append(card.Card(3, 3, yildor.emerald, 5, 3, 0, 3, 3))
+    cards.append(card.Card(3, 4, yildor.emerald, 3, 6, 3, 0, 0))
+    cards.append(card.Card(3, 4, yildor.emerald, 0, 7, 0, 0, 0))
+    cards.append(card.Card(3, 5, yildor.emerald, 0, 7, 3, 0, 0))
+    cards.append(card.Card(3, 3, yildor.ruby, 3, 5, 3, 0, 3))
+    cards.append(card.Card(3, 4, yildor.ruby, 0, 0, 7, 0, 0))
+    cards.append(card.Card(3, 4, yildor.ruby, 0, 3, 6, 3, 0))
+    cards.append(card.Card(3, 5, yildor.ruby, 0, 0, 7, 3, 0))
+    cards.append(card.Card(3, 3, yildor.onyx, 3, 3, 5, 3, 0))
+    cards.append(card.Card(3, 4, yildor.onyx, 0, 0, 0, 7, 0))
+    cards.append(card.Card(3, 4, yildor.onyx, 0, 0, 3, 6, 3))
+    cards.append(card.Card(3, 5, yildor.onyx, 0, 0, 0, 7, 3))
+    return cards
+
+
+def all_noble_cards():
+    # return an array of all noble cards
+    cards = []
+    cards.append(card.Card(4, 3, yildor.noble, 3, 0, 0, 3, 3))
+    cards.append(card.Card(4, 3, yildor.noble, 0, 3, 3, 3, 0))
+    cards.append(card.Card(4, 3, yildor.noble, 3, 3, 0, 0, 3))
+    cards.append(card.Card(4, 3, yildor.noble, 0, 0, 3, 3, 3))
+    cards.append(card.Card(4, 3, yildor.noble, 3, 3, 3, 0, 0))
+    cards.append(card.Card(4, 3, yildor.noble, 0, 0, 4, 4, 0))
+    cards.append(card.Card(4, 3, yildor.noble, 4, 0, 0, 0, 4))
+    cards.append(card.Card(4, 3, yildor.noble, 4, 4, 0, 0, 0))
+    cards.append(card.Card(4, 3, yildor.noble, 0, 0, 0, 4, 4))
+    cards.append(card.Card(4, 3, yildor.noble, 0, 4, 4, 0, 0))
+    return cards
 
 
 if __name__ == '__main__':
