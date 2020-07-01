@@ -1,3 +1,5 @@
+import yildor
+
 class Card:
     def __init__(self, rank, point_value, gem_type, diamond_cost=0, sapphire_cost=0, emerald_cost=0, ruby_cost=0, onyx_cost=0):
         self.rank = rank
@@ -13,7 +15,7 @@ class Card:
         return "{rank: " + str(self.rank) + ", point_value: " + str(self.point_value) + ", gem_type: " + str(self.gem_type) + "}"
 
     def __str__(self):
-        return 'Card(rank='+str(self.rank)+', point_value='+str(self.point_value)+', gem_type='+str(self.gem_type)+', diamond_cost='+str(self.diamond_cost)+', sapphire_cost='+str(self.sapphire_cost)+', emerald_cost='+str(self.emerald_cost)+', ruby_cost='+str(self.ruby_cost)+', onyx_cost='+str(self.onyx_cost) + ')'
+        return 'Card(rank='+str(self.rank)+', point_value='+str(self.point_value)+', gem_type='+str(self.gem_type)+', '+yildor.diamond+'='+str(self.diamond_cost)+', '+yildor.sapphire+'='+str(self.sapphire_cost)+', '+yildor.emerald+'='+str(self.emerald_cost)+', '+yildor.ruby+'='+str(self.ruby_cost)+', '+yildor.onyx+'='+str(self.onyx_cost) + ')'
 
     def set_cost_diamond(self, value):
         self.diamond_cost = value
