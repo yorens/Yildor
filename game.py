@@ -41,7 +41,8 @@ class Game:
         first_menu.add_menu_item(menu.MenuItem("Exit", "c2", 2))
         return first_menu
 
-    def set_up_players(self):
+    def ask_for_names(self):
+        names = []
         player_menu = menu.MenuIntegerInput(
             "", "How many players are playing (please enter a number)? ")
         player_menu.display()
@@ -54,9 +55,13 @@ class Game:
             player_name_menu = menu.MenuStringInput("",
                                                     "Enter the name for player " + str(i + 1) + ": ")
             player_name_menu.display()
-            self.players.append(player.Player(player_name_menu.get_choice()))
-        self.board.start(self.get_num_players())
+            names.append(player_name_menu.get_choice())
+        return names
 
+    def set_up_players(self, names):
+        for name in names:
+            self.players.append(player.Player(name))
+        self.board.start(self.get_num_players())
 
     def create_turn_menu(self):
         turn_choice_menu = menu.MenuChoiceInput("Do you want to...",
@@ -65,6 +70,8 @@ class Game:
         if self.current_player().total_num_chips() < 10:
             turn_choice_menu.add_menu_item(menu.MenuItem("Choose chips", "c1", 1))
         turn_choice_menu.add_menu_item(menu.MenuItem("Buy card", "c2", 2))
+        turn_choice_menu.add_menu_item(
+            menu.MenuItem("* display decks *", "c3", 3))
         turn_choice_menu.display()
         return turn_choice_menu
 
@@ -79,6 +86,8 @@ class Game:
                 print("Ok. Choosing chips.")
             elif turn_menu.get_choice() == 2:
                 print("Buying card")
+            elif turn_menu.get_choice() == 3:
+                self.board.debug_display()
             self.move_to_next_player()
         
     def is_game_over(self):
@@ -224,5 +233,6 @@ if __name__ == '__main__':
     else:
         print("Ok, you chose to start a new game.")
         game.start()
-        game.set_up_players()
+        names = game.ask_for_names()
+        game.set_up_players(names)
         game.play()
