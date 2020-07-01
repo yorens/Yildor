@@ -386,7 +386,6 @@ class NobleRowOfSevenLines:
         return buffer
 
     def row_7(self):
-        card_number = 1
         buffer = ""
         length = len(self.cards)
         for card in self.cards:
@@ -394,18 +393,17 @@ class NobleRowOfSevenLines:
                 if card != self.cards[0]:
                     buffer += "   "
                 buffer += "| "+str(card.cost_onyx())+" Onyx(s)  {1:8}|".format(
-                    card.cost_onyx(), card_number)
+                    card.cost_onyx(), "")
             if length == 4:
                 if card != self.cards[0]:
                     buffer += "      "
                 buffer += "| "+str(card.cost_onyx())+" Onyx(s) {1:13}|".format(
-                    card.cost_onyx(), card_number)
+                    card.cost_onyx(), "")
             if length == 3:
                 if card != self.cards[0]:
                     buffer += "                         "
                 buffer += "| {0:1} Onyx(s) {1:11}|".format(
-                    card.cost_onyx(), card_number)
-            card_number += 1
+                    card.cost_onyx(), "")
         return buffer
 
     def row_footer(self):
