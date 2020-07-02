@@ -1,0 +1,23 @@
+On yildiz's turn
+
+┌────────────────────────┐      ┌────────────────────────┐
+|   Yildiz has 4 points  |      |    Steve has 5 points  |
+|_____Cards_____Chips____|      |_____Cards_____Chips____|
+| Dia.| 2    |    1      |      | Dia.| 2    |    1      |
+| Sap.| 1    |    3      |      | Sap.| 2    |    1      |
+| Emr.| 0    |    2      |      | Emr.| 1    |    0      |
+| Rby.| 2    |    0      |      | Rby.| 1    |    0      |
+| Onx.| 1    |    1      |      | Onx.| 1    |    1      |
+| Wld.| 2    |    2      |      | Wld.| 1    |    0      |
+└────────────────────────┘      └────────────────────────┘
+
+                                Your Reserved Cards
+            ┌────────────────────────┐      ┌────────────────────────┐
+            | 5              sapphire|      | 3               emerald|
+            |        Rank 3          |      |        Rank 2          |
+            | 7 Diamond(s)           |      | 0 Diamond(s)           |
+            | 3 Sapphire(s)          |      | 0 Sapphire(s)          |
+            | 0 Emerald(s)           |      | 6 Emerald(s)           |
+            | 0 Ruby(s)              |      | 0 Ruby(s)              |
+            | 0 Onyx(s)              |      | 0 Onyx(s)              |
+            └────────────────────────┘      └────────────────────────┘
