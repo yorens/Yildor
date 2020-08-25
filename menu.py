@@ -18,6 +18,9 @@ class MenuChoiceInput:
     def get_choice(self):
         return self.choice_as_int
 
+    def get_menu_choice(self):
+        return self.menu_items[self.choice_as_int-1]
+
     def display(self):
         self.choice_as_int = 0
         total_padding_amount = 0
@@ -173,6 +176,8 @@ if __name__ == '__main__':
     menu2.add_menu_item(MenuItem("Choose 1 onyx", "c10", 10))
     menu2.display()
     print("you chose: " + str(menu2.get_choice()))
+    print("you chose: " + str(menu2.get_menu_choice().function))
+    print("you chose: " + str(menu2.get_menu_choice().prompt))
     menu3 = MenuIntegerInput(
         "", "How many players are playing (please enter a number)? ")
     menu3.display()

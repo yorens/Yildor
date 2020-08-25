@@ -27,3 +27,8 @@ test:
 debug:
 	@echo display debugging
 	@$(PYTHONCMD) debug.py
+
+.PHONY: menu-test
+menu-test:
+	@echo display menu-test
+	@$(PYTHONCMD) menu.py
