@@ -16,6 +16,7 @@ class Game:
         # create decks
         self.turns = []
         random.seed()
+        self.chip_storage = [0, 0, 0, 0, 0]
 
     def start(self):
         rank1 = all_rank_1_cards()
@@ -34,11 +35,19 @@ class Game:
     def debug_display(self):
         self.board.debug_display()
 
+    def chip_storage_types_clear(self):
+        self.chip_storage[0] = 0
+        self.chip_storage[1] = 0
+        self.chip_storage[2] = 0
+        self.chip_storage[3] = 0
+        self.chip_storage[4] = 0
+
     def create_first_menu(self):
         first_menu = menu.MenuChoiceInput("Do you want to...",
                                "Enter the number of your choice: ")
         first_menu.add_menu_item(menu.MenuItem("Start a new game", "c1", 1))
         first_menu.add_menu_item(menu.MenuItem("Exit", "c2", 2))
+        first_menu.add_menu_item(menu.MenuItem("Get help", "c3", 3))
         return first_menu
 
     def ask_for_names(self):
@@ -74,6 +83,31 @@ class Game:
             menu.MenuItem("* display decks *", "c3", 3))
         turn_choice_menu.display()
         return turn_choice_menu
+        
+    def create_chip_choosing_menu(self):
+        chip_choosing_menu = menu.MenuChoiceInput("", "Enter the number of your choice:")
+        if self.board.bank.balance(yildor.diamond) == self.board.bank.max_num_diamond:
+            chip_choosing_menu.add_menu_item(menu.MenuItem("Choose 2 " + yildor.diamond + "s", "A", 1))
+        if self.board.bank.balance(yildor.sapphire) == self.board.bank.max_num_sapphire:
+            chip_choosing_menu.add_menu_item(menu.MenuItem("Choose 2 " + yildor.sapphire + "s", "B", 2))
+        if self.board.bank.balance(yildor.emerald) == self.board.bank.max_num_emerald:
+            chip_choosing_menu.add_menu_item(menu.MenuItem("Choose 2 " + yildor.emerald + "s", "C", 3))
+        if self.board.bank.balance(yildor.ruby) == self.board.bank.max_num_ruby:
+            chip_choosing_menu.add_menu_item(menu.MenuItem("Choose 2 " + yildor.ruby + "s", "D", 4))
+        if self.board.bank.balance(yildor.onyx) == self.board.bank.max_num_onyx:
+            chip_choosing_menu.add_menu_item(menu.MenuItem("Choose 2 " + yildor.onyx + "s", "E", 5))
+        if self.board.bank.balance(yildor.diamond) >= 0:
+            chip_choosing_menu.add_menu_item(menu.MenuItem("Choose 1 " + yildor.diamond + "s", "F", 6))
+        if self.board.bank.balance(yildor.sapphire) >= 0:
+            chip_choosing_menu.add_menu_item(menu.MenuItem("Choose 1 " + yildor.sapphire + "s", "G", 7))
+        if self.board.bank.balance(yildor.emerald) >= 0:
+            chip_choosing_menu.add_menu_item(menu.MenuItem("Choose 1 " + yildor.emerald + "s", "H", 8))
+        if self.board.bank.balance(yildor.ruby) >= 0:
+            chip_choosing_menu.add_menu_item(menu.MenuItem("Choose 1 " + yildor.ruby + "s", "I", 9))
+        if self.board.bank.balance(yildor.onyx) >= 0:
+            chip_choosing_menu.add_menu_item(menu.MenuItem("Choose 1 " + yildor.onyx + "s", "J", 10))
+        chip_choosing_menu.display()
+        return chip_choosing_menu
 
     def current_player(self):
         return self.players[self.current_player_number]
@@ -83,7 +117,41 @@ class Game:
             self.board.display()
             turn_menu = self.create_turn_menu()
             if turn_menu.get_choice() == 1:
-                print("Ok. Choosing chips.")
+                choose_two = False
+                x = 0
+                while choose_two == False and x < 3:
+                    chip_menu = self.create_chip_choosing_menu()
+                    if chip_menu.get_menu_choice().function == "A":
+                        self.chip_storage[0] = 2
+                        choose_two = True
+                    elif chip_menu.get_menu_choice().function == "B":
+                        self.chip_storage[1] = 2
+                        choose_two = True
+                    elif chip_menu.get_menu_choice().function == "C":
+                        self.chip_storage[2] = 2
+                        choose_two = True
+                    elif chip_menu.get_menu_choice().function == "D":
+                        self.chip_storage[3] = 2
+                        choose_two = True
+                    elif chip_menu.get_menu_choice().function == "E":
+                        self.chip_storage[4] = 2
+                        choose_two = True
+                    elif chip_menu.get_menu_choice().function == "F":
+                        self.chip_storage[0] = 1
+                        x += 1
+                    elif chip_menu.get_menu_choice().function == "G":
+                        self.chip_storage[1] = 1
+                        x += 1
+                    elif chip_menu.get_menu_choice().function == "H":
+                        self.chip_storage[2] = 1
+                        x += 1
+                    elif chip_menu.get_menu_choice().function == "I":
+                        self.chip_storage[3] = 1
+                        x += 1
+                    elif chip_menu.get_menu_choice().function == "J":
+                        self.chip_storage[4] = 1
+                        x += 1
+                
             elif turn_menu.get_choice() == 2:
                 print("Buying card")
             elif turn_menu.get_choice() == 3:
@@ -230,6 +298,8 @@ if __name__ == '__main__':
     if first_menu.get_choice() == 2:
         print("Ok, Goodbye.")
         quit()
+    elif first_menu.get_choice() == 3:
+        print("[INSERT RULES FOR SPLENDOR HERE]")
     else:
         print("Ok, you chose to start a new game.")
         game.start()
