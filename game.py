@@ -112,46 +112,50 @@ class Game:
     def current_player(self):
         return self.players[self.current_player_number]
 
+    def player_choosing_chips(self):
+        choose_two = False
+        x = 0
+        while choose_two == False and x < 3 and (self.current_player().total_num_chips() + self.chip_storage[0] + self.chip_storage[1] + self.chip_storage[2]
+             + self.chip_storage[3] + self.chip_storage[4]) < 10:
+            chip_menu = self.create_chip_choosing_menu()
+            if chip_menu.get_menu_choice().function == "A":
+                self.chip_storage[0] = 2
+                choose_two = True
+            elif chip_menu.get_menu_choice().function == "B":
+                self.chip_storage[1] = 2
+                choose_two = True
+            elif chip_menu.get_menu_choice().function == "C":
+                self.chip_storage[2] = 2
+                choose_two = True
+            elif chip_menu.get_menu_choice().function == "D":
+                self.chip_storage[3] = 2
+                choose_two = True
+            elif chip_menu.get_menu_choice().function == "E":
+                self.chip_storage[4] = 2
+                choose_two = True
+            elif chip_menu.get_menu_choice().function == "F":
+                self.chip_storage[0] = 1
+                x += 1
+            elif chip_menu.get_menu_choice().function == "G":
+                self.chip_storage[1] = 1
+                x += 1
+            elif chip_menu.get_menu_choice().function == "H":
+                self.chip_storage[2] = 1
+                x += 1
+            elif chip_menu.get_menu_choice().function == "I":
+                self.chip_storage[3] = 1
+                x += 1
+            elif chip_menu.get_menu_choice().function == "J":
+                self.chip_storage[4] = 1
+                x += 1
+                
+
     def play(self):
         while not self.is_game_over():
             self.board.display()
             turn_menu = self.create_turn_menu()
             if turn_menu.get_choice() == 1:
-                choose_two = False
-                x = 0
-                while choose_two == False and x < 3:
-                    chip_menu = self.create_chip_choosing_menu()
-                    if chip_menu.get_menu_choice().function == "A":
-                        self.chip_storage[0] = 2
-                        choose_two = True
-                    elif chip_menu.get_menu_choice().function == "B":
-                        self.chip_storage[1] = 2
-                        choose_two = True
-                    elif chip_menu.get_menu_choice().function == "C":
-                        self.chip_storage[2] = 2
-                        choose_two = True
-                    elif chip_menu.get_menu_choice().function == "D":
-                        self.chip_storage[3] = 2
-                        choose_two = True
-                    elif chip_menu.get_menu_choice().function == "E":
-                        self.chip_storage[4] = 2
-                        choose_two = True
-                    elif chip_menu.get_menu_choice().function == "F":
-                        self.chip_storage[0] = 1
-                        x += 1
-                    elif chip_menu.get_menu_choice().function == "G":
-                        self.chip_storage[1] = 1
-                        x += 1
-                    elif chip_menu.get_menu_choice().function == "H":
-                        self.chip_storage[2] = 1
-                        x += 1
-                    elif chip_menu.get_menu_choice().function == "I":
-                        self.chip_storage[3] = 1
-                        x += 1
-                    elif chip_menu.get_menu_choice().function == "J":
-                        self.chip_storage[4] = 1
-                        x += 1
-                
+                self.player_choosing_chips()
             elif turn_menu.get_choice() == 2:
                 print("Buying card")
             elif turn_menu.get_choice() == 3:
